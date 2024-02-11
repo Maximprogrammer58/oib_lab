@@ -1,36 +1,60 @@
 import crypto
+import file_handler
 
 def main():
+    '''
+    # part 1
     alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
-    text = '''Использование автоматизированных систем во всех сферах деятельности человека, основанных на применении современных информационно-коммуникационных технологий, выдвинуло целый ряд проблем перед разработчиками и пользователями этих систем. Одна из наиболее острых проблем – проблема информационной безопасности, которую необходимо обеспечивать, контролировать, а также создавать условия для ее управления.'''
-    key = crypto.create_key()
-    print(alphabet)
-    print(text)
-    print(crypto.caesar_cipher_encode(text.upper(), 3))
-    print(key)
-    print(crypto.encryption(text.upper(), key))
+    text = file_handler.read_file("texts/part1/text.txt")
+    key = file_handler.read_file("texts/part1/key.txt")
+    encrypted_text = crypto.caesar_cipher(text, int(key))
+    file_handler.write_file("texts/part1/encrypted_text.txt", encrypted_text)
+    '''
+
+    #part 2
+    code = file_handler.read_file("texts/part2/code.txt")
+
+    print(crypto.write_frequency("freq.json"))
+    print(crypto.frequency_analysis(code))
+
+    code = code.replace("М", " ")
+    code = code.replace("Ф", "М")
+    code = code.replace("И", "Ф")
+    code = code.replace(">", "И")
+    code = code.replace("Е", "С")
+    code = code.replace("О", "Е")
+    code = code.replace("Ь", "Щ")
+    code = code.replace("А", "Ь")
+    code = code.replace("Л", "Я")
+    code = code.replace("Р", "З")
+    code = code.replace("Д", "Р")
+    code = code.replace("1", "О")
+    code = code.replace("r", "Т")
+    code = code.replace("Х", "Н")
+    code = code.replace("4", "А")
+    code = code.replace("c", "Д")
+    code = code.replace("П", "Ж")
+    code = code.replace("2", "П")
+    code = code.replace("К", "Ю")
+    code = code.replace("8", "К")
+    code = code.replace("Й", "Х")
+    code = code.replace("7", "Й")
+    code = code.replace("Ч", "Ц")
+    code = code.replace("<", "Ч")
+    code = code.replace("a", "В")
+    code = code.replace("b", "Г")
+    code = code.replace("Ы", "Ш")
+    code = code.replace("\n", "Ы")
+    code = code.replace("Б", "Э")
+    code = code.replace("5", "Б")
+    code = code.replace("У", "Л")
+    code = code.replace("t", "У")
+
+    print(code)
 
 
 if __name__ == "__main__":
     main()
-    d = crypto.write_frequency("freq.json")
-    sorted_tuple = dict(sorted(d.items(), key=lambda x: x[1], reverse=True))
 
 
-# Вторая часть
-text = '''tАЪЧХАЫ151Ъ1ХЯ Ч<tЫФБ7Х1ЪЕЬ ЧБ<ХЩ ЧЯБЬЕ 1ЛЧ5tАЩЬЕЬХЯ tЬ2
-1ЙЬД1ЫЧФХr1ЫЫ>МХБЬХЬЩ1ИtБАФХ5БЬХ1ЪЕЬ
-ЧБ<ХАИ1БЧФХЫtХ<ЬИtБХ8ЛЛtЩБЧДЫЬХ 12ЬБ1Б7ХЫ1ХОЧЛ
-ЬБtЩАБ1МХМЬ ЬОЧМХЩ ЧЯБЬ1ЪЕЬ ЧБ<ЬДХАИ1Б7ХОЧЛ
-ЬБtЩАБХДtА7<1ХБФИtЪЬХЯЬХБЬШХЯ ЬАБЬШХЯ Ч5ЧЫtХ5БЬХЩ ЧЯБЬЕ
-1ЛЧ5tАЩ1ФХАЧАБt<1ХrЬЪИЫ1ХЪУ2><ЧХrЬАБКЯЫ><ЧХАЯЬАЬ21<ЧХ
-ЧЙ21ДЪФБ7ХОЧЛ ЬБtЩАБХЬБХЬ5tДЧrЫ>МХДЫКБ
-tЫЫЧМХЙ1ДЧАЧ<ЬАБtШХ1ХЯЬБЬ<КХtЕЬХ8ЫБ
-ЬЯЧФХ2КrtБХДtА7<1ХД>АЬЩЬШХЧХКИХБЬ5ЫЬХЫ1<ЫЬЕЬХД>ОtХ5t<
-ХКХЬБЩ >БЬЕЬХБtЩАБ1ХЯ trАБ1ДЧБ7ХАt2tХ1ЪЕЬ
-ЧБ<ХАИ1БЧФХЩЬБЬ >ШХ2>ХМЬ
-ЬОЬХАИЧ<1ЪХЙ1ОК<ЪtЫЫ>tХr1ЫЫ>tХrЬДЬЪ7ЫЬХБФИtЪЬХДtr7Хr1Иt
-ХЧЫБКЧБЧДЫЬХЯЬЫФБЫЬХ5БЬХАИ1БЧtХДАt4tЪЬХ21ЙЧ
-КtБАФХЫ1ХЧЙ2>БЬ5ЫЬАБЧХЧЫЛЬ <14ЧЧХДХБtЩАБtХОЧЛЬД1ЫЧtХ8БКХЧЙ2>БЬ5ЫЬАБ7ХКАБ 1ЫФtБХ1ХД<tАБtХАХЫtШХКАБ
-1ЫФtБХЧХДЬЙ<ЬИЫЬАБ7ХАИ1Б7ХБtЩАБ
-'''
+
